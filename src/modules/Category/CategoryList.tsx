@@ -2,11 +2,13 @@ import { useRef, useState } from 'react'
 import type { Category } from '../../types/meal'
 import { CategoryButton } from '../../ui/CategoryButton'
 import { useCategories } from '../../utils/useCategories'
+import { useStore } from '../../store/useStore'
 
 export const CategoryList = () => {
 	const [isAtStart, setIsAtStart] = useState(true)
 	const [isAtEnd, setIsAtEnd] = useState(false)
 	const scrollRef = useRef<HTMLDivElement>(null)
+
 
 	const updateArrows = () => {
 		if (scrollRef.current) {
@@ -30,7 +32,6 @@ export const CategoryList = () => {
 		}
 	}
 
-
 	const { data, isLoading, error } = useCategories()
 
 
@@ -53,7 +54,7 @@ export const CategoryList = () => {
 			</div>
 			<div className="max-w-6xl overflow-hidden mx-4" ref={scrollRef} onScroll={updateArrows}>
 				<ul className='flex gap-4 no-scrollbar scroll-smooth' >
-					{data?.map((cat: Category) => <li key={cat.idCategory}><CategoryButton>{cat.strCategory}</CategoryButton></li>)}
+					{data?.map((cat: Category) => <li key={cat.idCategory}><CategoryButton categoryName={cat.strCategory}>{cat.strCategory}</CategoryButton></li>)}
 				</ul>
 			</div>
 			<div className='flex h-10 w-10 flex-none items-center justify-center'>

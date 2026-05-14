@@ -1,6 +1,11 @@
 import {create} from 'zustand'
 
-export const useStore = create((set) => ({
+interface CategoryState {
+  selectCategory: string
+  setSelectCategory: (category: string) => void
+}
+
+export const useStore = create<CategoryState>((set) => ({
 	selectCategory : '',
 	setSelectCategory: (category: string) => set({selectCategory : category})
 
