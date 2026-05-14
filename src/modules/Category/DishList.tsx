@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import type { Meal } from '../../types/meal'
 import Card from '../../ui/Card'
+import { CategoryList } from './CategoryList'
 
 const DishList = () => {
 	const [data, setData] = useState<Meal[]>([])
@@ -22,6 +23,7 @@ const DishList = () => {
 
 	return (
 		<div>
+			<CategoryList/>
 			<div className='w-full px-4 py-10'>
 				<ul className='mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-3'>
 					{data.map(item =>
