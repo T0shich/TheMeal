@@ -6,7 +6,7 @@ interface CategoryState {
 }
 
 export const useStore = create<CategoryState>((set) => ({
-	selectCategory : '',
+	selectCategory : 'Beef',
 	setSelectCategory: (category: string) => set({selectCategory : category})
 
 }))

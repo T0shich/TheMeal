@@ -1,37 +1,29 @@
-import axios from 'axios'
-import { useEffect, useRef, useState } from 'react'
+import { useStore } from '../../store/useStore'
 import type { Meal } from '../../types/meal'
 import Card from '../../ui/Card'
+import Loader from '../../ui/Loader'
+import { useCardGrid } from '../../utils/useCardGrid'
 import { CategoryList } from './CategoryList'
-import {useStore} from '../../store/useStore'
 const DishList = () => {
-	const [data, setData] = useState<Meal[]>([])
-
 	const selectCategory = useStore((state) => state.selectCategory)
 
-	useEffect(() => {
+	const { data: dishes, isLoading, isError } = useCardGrid(selectCategory)
 
-		const fetchCategory = async () => {
-			try {
-				const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectCategory}`)
-				if (response.status === 200) {
-					setData(response.data.meals.slice(0, 9) ?? [])
-				}
-			} catch (error) {
-				console.error('Failed to load dishes:', error)
-			}
-		}
-		fetchCategory()
-	}, [selectCategory])
+
+	if (isLoading) return <div className="h-screen flex justify-center m-auto">
+		<Loader />
+	</div>
+	if (isError) return <div className="h-screen flex justify-center m-auto">Ошибка загрузки блюд...</div>
 
 	return (
-		<div>
+		<div className='max-w-6xl  flex flex-col justify-center mx-auto'>
 			<CategoryList />
 			<div className='w-full px-4 py-10'>
+				<h2 className='text-2xl font-bold pb-6'>Блюдо из категории: {selectCategory}</h2>
 				<ul className='mx-auto grid w-full max-w-6xl grid-cols-1 justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-3'>
-					{data.map(item =>
-						<li key={item.idMeal} className='flex w-full justify-center'>
-							<Card {...item} />
+					{dishes?.map((dish: Meal) =>
+						<li key={dish.idMeal} className='flex w-full justify-center'>
+							<Card {...dish} />
 						</li>
 					)}
 				</ul>
