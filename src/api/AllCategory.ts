@@ -25,7 +25,7 @@ export const getDishesByCategory = async (category: string) => {
 	await delay(1000);
 
 	if (response.status === 200) {
-		return response.data.meals?.slice(0, 9) ?? []
+		return response.data.meals
 	}
 
 	throw new Error('Network response was not ok')

@@ -23,7 +23,7 @@ export const CategoryList = () => {
 
 	const handleScroll = (direction: 'left' | 'right') => {
 		if (scrollRef.current) {
-			const scrollAmount = 300
+			const scrollAmount = 500
 
 			scrollRef.current.scrollBy({
 				left: direction === 'left' ? -scrollAmount : scrollAmount,
