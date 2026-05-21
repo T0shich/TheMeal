@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Command } from 'cmdk'
 import { useEffect, useState } from 'react'
 import Container from '../../assets/Container.svg'
+import { motion, AnimatePresence } from 'motion/react'
 type Meal = {
 	idMeal: string
 	strMeal: string
@@ -62,26 +63,34 @@ const Search = () => {
 							className='w-full rounded-full border border-amber-500/20 bg-amber-500 px-6 py-5 text-base outline-none placeholder:text-amber-950/60 shadow-lg shadow-amber-500/10'
 						/>
 
-						{query && (
-
-						<Command.List className="absolute left-0 top-full z-20 mt-3 max-h-80 w-full overflow-y-auto rounded-3xl border border-amber-500/10 bg-white p-2 shadow-2xl shadow-black/10">
-							{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Загрузка...</Command.Loading>}
-							{error && <Command.Empty className="p-4 text-center text-sm text-red-500">{error}</Command.Empty>}
-							{!isLoading && query.trim() !== '' && meals.length === 0 && (
-								<Command.Empty className="p-4 text-center text-sm text-gray-500">Ничего не найдено</Command.Empty>
-							)}
-
-							{meals.map(meal => (
-								<Command.Item
-									key={meal.idMeal}
-									value={meal.strMeal}
-									className="cursor-pointer rounded-2xl px-4 py-3 text-left text-sm text-gray-800 outline-none hover:bg-amber-500 hover:text-white"
+						<AnimatePresence>
+							{query && (
+								<motion.div
+									initial={{ opacity: 0, y: -10 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -10 }}
+									transition={{ duration: 0.2 }}
 								>
-									{meal.strMeal}
-								</Command.Item>
-							))}
-						</Command.List>
-						)}
+									<Command.List className="absolute left-0 top-full z-20 mt-3 max-h-80 w-full overflow-y-auto rounded-3xl border border-amber-500/10 bg-white p-2 shadow-2xl shadow-black/10">
+										{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Загрузка...</Command.Loading>}
+										{error && <Command.Empty className="p-4 text-center text-sm text-red-500">{error}</Command.Empty>}
+										{!isLoading && query.trim() !== '' && meals.length === 0 && (
+											<Command.Empty className="p-4 text-center text-sm text-gray-500">Ничего не найдено</Command.Empty>
+										)}
+
+										{meals.map(meal => (
+											<Command.Item
+												key={meal.idMeal}
+												value={meal.strMeal}
+												className="cursor-pointer rounded-2xl px-4 py-3 text-left text-sm text-gray-800 outline-none hover:bg-amber-500 hover:text-white"
+											>
+												{meal.strMeal}
+											</Command.Item>
+										))}
+									</Command.List>
+								</motion.div>
+							)}
+						</AnimatePresence>
 					</Command>
 				</div>
 			</div>
