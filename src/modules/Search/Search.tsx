@@ -3,7 +3,7 @@ import { Command } from 'cmdk'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Container from '../../assets/Container.svg'
+import Container from '../../assets/main_bg.png'
 type Meal = {
 	idMeal: string
 	strMeal: string
@@ -52,11 +52,31 @@ const Search = () => {
 	}, [query])
 	return (
 		<>
-			<div
-				className="flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-center bg-cover bg-no-repeat"
+			<motion.div
+				className="relative flex min-h-[calc(100vh-5rem)] w-full items-center justify-center bg-center bg-cover bg-no-repeat"
 				style={{ backgroundImage: `url(${Container})` }}
 			>
-				<div className="w-full max-w-3xl px-4">
+				<div className="absolute inset-0 bg-black/40" />
+				<div className="relative z-10 flex w-full max-w-3xl flex-col items-center px-4">
+					<div className="mb-10 text-center">
+						<motion.h1
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.7 }}
+							className="mb-4 text-4xl font-black tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl"
+						>
+							Что приготовим сегодня?
+						</motion.h1>
+						<motion.p
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.7, delay: 0.1 }}
+							className="mx-auto max-w-2xl text-lg font-medium text-white/90 drop-shadow-md sm:text-xl"
+						>
+							Откройте для себя тысячи вкуснейших рецептов со всего мира
+						</motion.p>
+					</div>
+
 					<Command className="relative mx-auto w-full overflow-visible" shouldFilter={false}>
 						<div className="relative">
 							<div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-amber-700">
@@ -114,7 +134,7 @@ const Search = () => {
 					</Command>
 
 				</div>
-			</div>
+			</motion.div>
 		</>
 	)
 }
