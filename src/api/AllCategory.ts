@@ -30,3 +30,16 @@ export const getDishesByCategory = async (category: string) => {
 
 	throw new Error('Network response was not ok')
 }
+
+
+export const getMealById = async (id: string) => {
+	const response = await axios.get(
+		`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+	)
+
+	if (response.status === 200) {
+		return response.data.meals[0]
+	}
+
+	throw new Error('Network response was not ok')
+}
