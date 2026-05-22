@@ -1,15 +1,19 @@
 import Header from '../components/Header'
 import Search from '../modules/Search/Search'
 import DishList from '../modules/Category/DishList'
+import { motion } from 'motion/react'
 const Home = () => {
 	return (
-		<div className="min-h-screen flex flex-col">
+		<motion.div className="min-h-screen flex flex-col"
+			initial={{ opacity: 0, y: 16 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.35 }}	>
 			<Header />
 			<div className="items-center justify-center ">
-				<Search  />
-				<DishList/>
+				<Search />
+				<DishList />
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 
