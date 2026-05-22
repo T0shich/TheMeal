@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Command } from 'cmdk'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Container from '../../assets/Container.svg'
 type Meal = {
 	idMeal: string
@@ -9,6 +10,7 @@ type Meal = {
 }
 
 const Search = () => {
+	const navigate = useNavigate()
 	const [query, setQuery] = useState<string>('')
 	const [meals, setMeals] = useState<Meal[]>([])
 	const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -91,13 +93,14 @@ const Search = () => {
 											<Command.Item
 												key={meal.idMeal}
 												value={meal.strMeal}
+												onSelect={() => navigate(`/meal/${meal.idMeal}`)}
 												className="cursor-pointer flex items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-gray-800 outline-none hover:bg-amber-50"
 											>
 												{/** thumbnail if available */}
 												{(meal as any).strMealThumb ? (
-													<img src={(meal as any).strMealThumb} alt={meal.strMeal} className="h-10 w-10 rounded-md object-cover" />
+													<img src={(meal as any).strMealThumb} alt={meal.strMeal} className="h-12 w-12 rounded-md object-cover" />
 												) : (
-													<div className="h-10 w-10 rounded-md bg-amber-50 flex items-center justify-center text-amber-600">🍽️</div>
+													<div className="h-12 w-12 rounded-md bg-amber-50 flex items-center justify-center text-amber-600">🍽️</div>
 												)}
 												<div className="flex-1">
 													<div className="font-medium">{meal.strMeal}</div>
