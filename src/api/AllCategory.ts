@@ -37,6 +37,7 @@ export const getMealById = async (id: string) => {
 		`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
 	)
 
+	await delay(1000);
 	if (response.status === 200) {
 		return response.data.meals[0]
 	}

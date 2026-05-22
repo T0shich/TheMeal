@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import type { Category } from '../../types/meal'
 import { CategoryButton } from '../../ui/CategoryButton'
+import ErrorCard from '../../ui/ErrorCard'
 import { useCategories } from '../../utils/useCategories'
-import { useStore } from '../../store/useStore'
 
 export const CategoryList = () => {
 	const [isAtStart, setIsAtStart] = useState(true)
@@ -36,9 +36,14 @@ export const CategoryList = () => {
 
 
 
+
 	if (isLoading) return <span>Загрузка...</span>
 
-	if (error) return <span>Ошибка: {error.message}</span>
+	if (error) return (
+		<div className="w-full flex justify-center">
+			<ErrorCard title="Ошибка загрузки" message={`Не удалось загрузить категории: ${error.message}`} actionLabel="Повторить" onAction={() => window.location.reload()} />
+		</div>
+	)
 
 	return (
 		<div className='flex items-center justify-center gap-4'>

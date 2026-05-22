@@ -1,46 +1,51 @@
 import { flag } from 'country-emoji'
 import { motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import type { MealDetail } from '../types/meal'
 import { useMealById } from '../utils/useCategories'
-
-const buildIngredients = (meal?: MealDetail) => {
-	if (!meal) return []
-
-	return Array.from({ length: 20 }, (_, index) => index + 1)
-		.map((num) => {
-			const ingredient = meal[`strIngredient${num}` as keyof MealDetail]
-			const measure = meal[`strMeasure${num}` as keyof MealDetail]
-
-			if (!ingredient || typeof ingredient !== 'string' || ingredient.trim() === '') {
-				return null
-			}
-
-			return {
-				name: ingredient,
-				measure: typeof measure === 'string' ? measure : '',
-			}
-		})
-		.filter((item): item is { name: string; measure: string } => item !== null)
-}
+import Loader from '../ui/Loader'
+import { buildIngredients } from '../utils/buildIngredients'
+import ErrorCard from '../ui/ErrorCard'
 
 const MealDetail = () => {
 	const params = useParams()
 	const id = params.id
-
 	const { data, isLoading, error } = useMealById(id!)
+	const videoSectionRef = useRef<HTMLDivElement | null>(null)
+	const wasFullscreenRef = useRef(false)
 
-	if (isLoading) {
-		return <div>Loading...</div>
-	}
+
+	useEffect(() => {
+		const handleFullscreenChange = () => {
+			if (document.fullscreenElement) {
+				wasFullscreenRef.current = true
+				return
+			}
+
+			if (wasFullscreenRef.current) {
+				wasFullscreenRef.current = false
+				window.requestAnimationFrame(() => {
+					videoSectionRef.current?.scrollIntoView({
+						behavior: 'smooth',
+						block: 'center',
+					})
+				})
+			}
+		}
+
+		document.addEventListener('fullscreenchange', handleFullscreenChange)
+
+		return () => {
+			document.removeEventListener('fullscreenchange', handleFullscreenChange)
+		}
+	}, [])
+
+	if (isLoading) return (<Loader />)
 
 	if (error) {
 		return (
-			<div className="min-h-screen bg-linear-to-br from-stone-100 via-orange-50 to-amber-100 flex items-center justify-center p-6">
-				<div className="rounded-3xl bg-white/85 backdrop-blur-md border border-white/60 shadow-xl px-6 py-5 text-center text-gray-700">
-					Error loading meal details
-				</div>
-			</div>
+			<ErrorCard title="Ошибка загрузки" message={`Не удалось загрузить данные блюда:${error.message}`} actionLabel="Повторить" onAction={() => window.location.reload()} />
 		)
 	}
 
@@ -52,7 +57,7 @@ const MealDetail = () => {
 				<div className="mb-6 flex items-center justify-between">
 					<Link
 						to="/"
-						className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
+						className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-6 py-2 text-md font-medium text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
 					>
 						← Back
 					</Link>
@@ -90,16 +95,7 @@ const MealDetail = () => {
 								)}
 							</div>
 
-							<motion.a
-								href={data?.strYoutube}
-								target="_blank"
-								rel="noreferrer"
-								className="inline-flex w-full items-center justify-center rounded-2xl bg-linear-to-r from-amber-500 to-orange-500 px-5 py-3 font-semibold text-white shadow-lg shadow-amber-500/25 transition hover:shadow-xl"
-								whileHover={{ scale: 1.02 }}
-								whileTap={{ scale: 0.98 }}
-							>
-								Watch The Video Recipe
-							</motion.a>
+
 						</div>
 					</div>
 
@@ -141,6 +137,17 @@ const MealDetail = () => {
 								))}
 							</div>
 						</section>
+						<div ref={videoSectionRef}>
+							<span className='p-3 font-semibold uppercase text-2xl text-amber-600'>The Video Recipe</span>
+							<iframe
+								className='w-full aspect-video rounded-2xl mt-1 shadow-2xl'
+								src={data?.strYoutube?.replace('watch?v=', 'embed/')}
+								title="YouTube video player"
+								allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowFullScreen
+							>
+							</iframe>
+						</div>
 					</div>
 				</motion.div>
 			</div>

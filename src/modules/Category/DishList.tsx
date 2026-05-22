@@ -1,8 +1,9 @@
+import { useState } from 'react'
 import { useStore } from '../../store/useStore'
 import type { Meal } from '../../types/meal'
 import Card from '../../ui/Card'
+import ErrorCard from '../../ui/ErrorCard'
 import Loader from '../../ui/Loader'
-import { useState } from 'react'
 import { useCardGrid } from '../../utils/useCardGrid'
 import { CategoryList } from './CategoryList'
 
@@ -24,10 +25,12 @@ const DishList = () => {
 
 
 
-	if (isLoading) return <div className="h-screen flex justify-center m-auto">
-		<Loader />
-	</div>
-	if (isError) return <div className="h-screen flex justify-center m-auto">Ошибка загрузки блюд...</div>
+	if (isLoading) return <Loader />
+	if (isError) return (
+		<div className="h-screen flex items-center justify-center">
+			<ErrorCard title="Ошибка загрузки" message="Не удалось загрузить блюда этой категории." actionLabel="Повторить" onAction={() => window.location.reload()} />
+		</div>
+	)
 
 	return (
 		<div className='max-w-6xl justify-center mx-auto'>
