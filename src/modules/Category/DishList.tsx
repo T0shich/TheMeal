@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '../../store/useStore'
-import type { Meal } from '../../types/meal'
-import Card from '../../ui/Card'
+import { MealGrid } from '../../components/MealGrid'
 import ErrorCard from '../../ui/ErrorCard'
 import Loader from '../../ui/Loader'
 import { useCardGrid } from '../../utils/useCardGrid'
@@ -19,11 +18,6 @@ const DishList = () => {
 		}
 	}
 
-
-
-
-
-
 	if (isLoading) return <Loader />
 	if (isError) return (
 		<div className="h-screen flex items-center justify-center">
@@ -33,14 +27,7 @@ const DishList = () => {
 
 	return (
 		<div className='max-w-6xl justify-center mx-auto px-4 py-10'>
-			<h2 className='text-2xl font-bold pb-6'>Блюда из категории: {selectCategory || 'Все'}</h2>
-			<ul className=' grid  max-w-6xl grid-cols-1 justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-3'>
-				{dishesToRender?.map((dish: Meal) =>
-					<li key={dish.idMeal} className='flex w-full justify-center'>
-						<Card {...dish} />
-					</li>
-				)}
-			</ul>
+			<MealGrid dishes={dishesToRender} categoryName={selectCategory} />
 			{hasMore && (
 				<div className="flex justify-center mt-8">
 					<button onClick={() => handleAddDishes()}

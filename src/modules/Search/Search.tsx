@@ -116,9 +116,8 @@ const Search = () => {
 												onSelect={() => navigate(`/meal/${meal.idMeal}`)}
 												className="cursor-pointer flex items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-gray-800 outline-none hover:bg-amber-50"
 											>
-												{/** thumbnail if available */}
-												{(meal as any).strMealThumb ? (
-													<img src={(meal as any).strMealThumb} alt={meal.strMeal} className="h-12 w-12 rounded-md object-cover" />
+												{(meal as Meal & { strMealThumb: string }).strMealThumb ? (
+													<img src={(meal as Meal & { strMealThumb: string }).strMealThumb} alt={meal.strMeal} className="h-12 w-12 rounded-md object-cover" />
 												) : (
 													<div className="h-12 w-12 rounded-md bg-amber-50 flex items-center justify-center text-amber-600">🍽️</div>
 												)}
