@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import { CategoryList } from '../modules/Category/CategoryList'
 import DishList from '../modules/Category/DishList'
 import Search from '../modules/Search/Search'
 
@@ -36,6 +37,7 @@ const Home = () => {
 							<div className="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full opacity-80" />
 						</div>
 
+						<CategoryList />
 						<DishList />
 					</motion.div>
 				</section>

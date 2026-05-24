@@ -5,7 +5,6 @@ import Card from '../../ui/Card'
 import ErrorCard from '../../ui/ErrorCard'
 import Loader from '../../ui/Loader'
 import { useCardGrid } from '../../utils/useCardGrid'
-import { CategoryList } from './CategoryList'
 
 
 const DishList = () => {
@@ -33,29 +32,25 @@ const DishList = () => {
 	)
 
 	return (
-		<div className='max-w-6xl justify-center mx-auto mt-5'>
-			<CategoryList />
-			<div className='px-4 py-10'>
-				<h2 className='text-2xl font-bold pb-6'>Блюдо из категории: {selectCategory}</h2>
-				<ul className=' grid  max-w-6xl grid-cols-1 justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-3'>
-					{dishesToRender?.map((dish: Meal) =>
-						<li key={dish.idMeal} className='flex w-full justify-center'>
-							<Card {...dish} />
-						</li>
-					)}
-				</ul>
-				{hasMore && (
-					<div className="flex justify-center mt-6">
-						<button onClick={() => handleAddDishes()}
-							className="p-4 hover:bg-amber-500 rounded-full">
-							Загрузить ещё
-						</button>
-					</div>
+		<div className='max-w-6xl justify-center mx-auto px-4 py-10'>
+			<h2 className='text-2xl font-bold pb-6'>Блюда из категории: {selectCategory || 'Все'}</h2>
+			<ul className=' grid  max-w-6xl grid-cols-1 justify-items-center gap-10 md:grid-cols-2 xl:grid-cols-3'>
+				{dishesToRender?.map((dish: Meal) =>
+					<li key={dish.idMeal} className='flex w-full justify-center'>
+						<Card {...dish} />
+					</li>
 				)}
-			</div>
+			</ul>
+			{hasMore && (
+				<div className="flex justify-center mt-8">
+					<button onClick={() => handleAddDishes()}
+						className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-md">
+						Загрузить ещё
+					</button>
+				</div>
+			)}
 		</div>
 	)
 }
 
 export default DishList
-
