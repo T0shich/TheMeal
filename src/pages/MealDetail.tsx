@@ -2,11 +2,12 @@ import { flag } from 'country-emoji'
 import { motion } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Footer from '../components/Footer'
 import type { MealDetail } from '../types/meal'
-import { useMealById } from '../utils/useCategories'
+import ErrorCard from '../ui/ErrorCard'
 import Loader from '../ui/Loader'
 import { buildIngredients } from '../utils/buildIngredients'
-import ErrorCard from '../ui/ErrorCard'
+import { useMealById } from '../utils/useCategories'
 
 const MealDetail = () => {
 	const params = useParams()
@@ -52,8 +53,8 @@ const MealDetail = () => {
 	const ingredients = buildIngredients(data)
 
 	return (
-		<div className="min-h-screen bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
-			<div className="mx-auto max-w-7xl px-4 py-6 md:px-8 md:py-10">
+		<article className="min-h-screen flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
+			<div className="mx-auto w-full flex-grow max-w-7xl px-4 py-6 md:px-8 md:py-10">
 				<div className="mb-6 flex items-center justify-between">
 					<Link
 						to="/"
@@ -80,7 +81,7 @@ const MealDetail = () => {
 						</div>
 
 						<div className="space-y-5 p-5 md:p-6">
-							<div>
+							<section>
 								<div className="mb-3 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
 									<span className="rounded-full bg-amber-100 px-3 py-1 text-amber-700">{data?.strCategory}</span>
 									<span className="rounded-full bg-gray-100 px-3 py-1 text-gray-700">{data?.strArea} {flag(data?.strCountry)}</span>
@@ -93,7 +94,7 @@ const MealDetail = () => {
 										Tags: <span className="font-medium text-gray-800">{data.strTags}</span>
 									</p>
 								)}
-							</div>
+							</section>
 
 
 						</div>
@@ -137,7 +138,7 @@ const MealDetail = () => {
 								))}
 							</div>
 						</section>
-						<div ref={videoSectionRef}>
+						<section ref={videoSectionRef}>
 							<span className='p-3 font-semibold uppercase text-2xl text-amber-600'>The Video Recipe</span>
 							<iframe
 								className='w-full aspect-video rounded-2xl mt-1 shadow-2xl'
@@ -147,11 +148,12 @@ const MealDetail = () => {
 								allowFullScreen
 							>
 							</iframe>
-						</div>
+						</section>
 					</div>
 				</motion.div>
 			</div>
-		</div>
+			<Footer />
+		</article>
 	)
 }
 

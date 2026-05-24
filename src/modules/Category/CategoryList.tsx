@@ -46,7 +46,7 @@ export const CategoryList = () => {
 	)
 
 	return (
-		<div className='flex items-center justify-center gap-4'>
+		<section className='flex items-center justify-center gap-4'>
 			<div className='flex h-10 w-10 flex-none items-center justify-center'>
 				<button
 					onClick={() => handleScroll('left')}
@@ -72,6 +72,6 @@ export const CategoryList = () => {
 					{'>'}
 				</button>
 			</div>
-		</div>
+		</section>
 	)
 }

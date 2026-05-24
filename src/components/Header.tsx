@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa"
 import HeaderLi from "../ui/HeaderLi"
 const Header = () => {
 	return (
-		<div className='h-20 w-full flex items-center justify-between px-16'>
+		<header className=' h-20 w-full flex items-center justify-between px-16'>
 			<div className="text-2xl font-bold text-[#1C1917]">
 				<h2>The Modern Kitchen</h2>
 			</div>
@@ -21,7 +21,7 @@ const Header = () => {
 					<HeaderLi isIcon><FaRegUser className='text-[15px]'/></HeaderLi>
 				</ul>
 			</div>
-		</div>
+		</header>
 	)
 }
 

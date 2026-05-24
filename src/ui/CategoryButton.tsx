@@ -25,7 +25,7 @@ export const CategoryButton = (props: CategoryButtonProps) => {
 	const style = 'px-4 py-2 rounded-full border border-transparent text-gray-800 transition-colors duration-300 hover:bg-gray-300'
 
 	return (
-		<button onClick={() => handleSelect()} {...buttonProps} className={` ${props.className || ''} ${style} ${isSelected ? 'bg-orange-500 border-gray-200' : ''} `} > {props.children}</button>
+		<button onClick={() => handleSelect()} {...buttonProps} className={` ${props.className || ''} ${style} ${isSelected ? 'bg-orange-400 border-gray-200' : ''} `} > {props.children}</button>
 
 	)
 }

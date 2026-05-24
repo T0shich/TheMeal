@@ -33,7 +33,7 @@ const DishList = () => {
 	)
 
 	return (
-		<div className='max-w-6xl justify-center mx-auto'>
+		<div className='max-w-6xl justify-center mx-auto mt-5'>
 			<CategoryList />
 			<div className='px-4 py-10'>
 				<h2 className='text-2xl font-bold pb-6'>Блюдо из категории: {selectCategory}</h2>

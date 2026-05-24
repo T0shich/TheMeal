@@ -102,7 +102,7 @@ const Search = () => {
 									exit={{ opacity: 0, y: -8 }}
 									transition={{ duration: 0.18 }}
 								>
-									<Command.List className="absolute left-0 top-full z-30 mt-3 max-h-80 w-full overflow-y-auto rounded-2xl border border-amber-100 bg-white p-2 shadow-2xl shadow-black/10">
+									<Command.List className="absolute left-0 top-full z-30 mt-3 max-h-70 w-full overflow-y-auto rounded-2xl border border-amber-100 bg-white p-2 shadow-2xl shadow-black/10">
 										{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Загрузка...</Command.Loading>}
 										{error && <div className="p-4 text-center text-sm text-red-600">{error}</div>}
 										{!isLoading && query.trim() !== '' && meals.length === 0 && (
