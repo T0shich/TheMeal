@@ -37,7 +37,7 @@ const Home = () => {
 							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">Популярные категории</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
 							<div className="absolute right-3 top-0">
-								<Filter />
+								<Filter Options={['Категории' , 'Страны' , 'Ингридиент']}/>
 							</div>
 						</div>
 

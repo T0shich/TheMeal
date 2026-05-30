@@ -6,6 +6,7 @@ import Loader from '../../ui/Loader'
 import { useCardGrid } from '../../utils/useCardGrid'
 
 
+
 const DishList = () => {
 	const selectCategory = useStore((state) => state.selectCategory)
 	const { data: dishes, isLoading, isError } = useCardGrid(selectCategory)

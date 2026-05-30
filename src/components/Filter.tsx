@@ -1,10 +1,18 @@
 import { AnimatePresence, motion } from "motion/react"
 import { useState } from 'react'
 import { IoFilterSharp } from "react-icons/io5"
+import { useFilterStore } from '../store/useStore'
 
-export const Filter = () => {
+interface FilterProps {
+	Options: string[]}
+
+export const Filter = ({ Options }: FilterProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 
+	const handleOptionClick = (option: string) => {
+		useFilterStore.getState().setFilter(option)
+		setIsOpen(false)
+	}
 
 	return (
 		<div className="relative">
@@ -18,18 +26,22 @@ export const Filter = () => {
 			><IoFilterSharp /> </motion.button>
 			<AnimatePresence>
 				{isOpen && (
-					<motion.ul
+					<motion.ul 
 						className="absolute flex gap-5 top-16 right-0 mt-2 w-fit rounded-lg p-4 z-10 max-w-6xl"
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: 50 }}
 						transition={{ ease: "easeOut" }}
 					>
-						<li className="px-4 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md">Option</li>
-						<li className="px-5 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md">Option</li>
-						<li className="px-4 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md">Option</li>
-
-
+						{Options.map((option, index) => (
+							<li 
+								key={index} 
+								className="px-4 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md"
+								onClick={() => handleOptionClick(option)}
+							>
+								{option}
+							</li>
+						))}
 					</motion.ul>
 				)}
 			</AnimatePresence>
