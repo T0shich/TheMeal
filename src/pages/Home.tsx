@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { Filter } from '../components/Filter'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { CategoryList } from '../modules/Category/CategoryList'
@@ -32,9 +33,12 @@ const Home = () => {
 						viewport={{ once: true, margin: '-50px' }}
 						transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
 					>
-						<div className="text-center mb-10 md:mb-14">
-							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm">Популярные категории</h2>
-							<div className="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full opacity-80" />
+						<div className="relative flex flex-col items-center mb-10 md:mb-16">
+							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">Популярные категории</h2>
+							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
+							<div className="absolute right-3 top-0">
+								<Filter />
+							</div>
 						</div>
 
 						<CategoryList />

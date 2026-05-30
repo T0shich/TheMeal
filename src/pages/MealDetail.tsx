@@ -1,7 +1,7 @@
 import { flag } from 'country-emoji'
 import { motion } from 'motion/react'
 import { useEffect, useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import type { MealDetail } from '../types/meal'
 import ErrorCard from '../ui/ErrorCard'
@@ -12,6 +12,7 @@ import { useMealById } from '../utils/useCategories'
 const MealDetail = () => {
 	const params = useParams()
 	const id = params.id
+	const navigate = useNavigate()
 	const { data, isLoading, error } = useMealById(id!)
 	const videoSectionRef = useRef<HTMLDivElement | null>(null)
 	const wasFullscreenRef = useRef(false)
@@ -56,12 +57,12 @@ const MealDetail = () => {
 		<article className="min-h-screen flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
 			<div className="mx-auto w-full flex-grow max-w-7xl px-4 py-6 md:px-8 md:py-10">
 				<div className="mb-6 flex items-center justify-between">
-					<Link
-						to="/"
-						className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-6 py-2 text-md font-medium text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md"
+					<button
+						onClick={() => navigate(-1)}
+						className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/80 px-6 py-2 text-md font-medium text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
 					>
 						← Back
-					</Link>
+					</button>
 				</div>
 
 				<motion.div
