@@ -47,7 +47,7 @@ const Home = () => {
 						</div>
 
 						{option === 'Страны' ? <CountyList /> : <CategoryList />}
-						<CountyGrid />
+						{option === 'Страны' ? <CountyGrid /> : <DishList />}
 					</motion.div>
 				</section>
 			</main>

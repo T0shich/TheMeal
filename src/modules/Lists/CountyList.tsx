@@ -6,8 +6,8 @@ import Loader from '../../ui/Loader'
 import { useAreas } from '../../utils/useCategories'
 export const CountyList = () => {
 
-	const setCategory = useStore((state) => state.setSelectCategory)
-	const selectCategory = useStore((state) => state.selectCategory)
+	const setArea = useStore((state) => state.setSelectArea)
+	const selectArea = useStore((state) => state.selectArea)
 	const { data, isLoading, error } = useAreas()
 
 	if (isLoading) return <Loader />
@@ -23,7 +23,7 @@ export const CountyList = () => {
 			<ul className='flex gap-4 no-scrollbar scroll-smooth' >
 				{data?.map((area: { strArea: string }) => (
 					<li key={area.strArea} className='flex w-full justify-center'>
-						<CategoryButton categoryName={area.strArea} setFunction={setCategory} filterType={selectCategory}>
+						<CategoryButton categoryName={area.strArea} setFunction={setArea} filterType={selectArea}>
 							{area.strArea}
 						</CategoryButton>
 					</li>

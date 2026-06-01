@@ -1,18 +1,17 @@
 import { useState } from 'react'
 import type { UseQueryResult } from '@tanstack/react-query'
-import { useStore } from '../store/useStore'
 import Loader from '../ui/Loader'
 import ErrorCard from '../ui/ErrorCard'
 import { MealGrid } from './MealGrid'
 import type { Meal } from '../types/meal'
 
 interface TemplateDishListProps {
-	queryFunction: (category: string) => UseQueryResult<Meal[], Error>
+	queryFunction: (filter: string) => UseQueryResult<Meal[], Error>
+	activeFilter: string
 }
 
-export const TemplateDishList = ({ queryFunction}: TemplateDishListProps) => {
-	const selectCategory = useStore((state) => state.selectCategory)
-	const { data: dishes, isLoading, isError } = queryFunction(selectCategory)
+export const TemplateDishList = ({ queryFunction, activeFilter }: TemplateDishListProps) => {
+	const { data: dishes, isLoading, isError } = queryFunction(activeFilter)
 	const [visibleCount, setVisibleCount] = useState(9)
 	const dishesToRender = dishes?.slice(0, visibleCount) ?? []
 	const hasMore = dishes ? dishes.length > dishesToRender.length : false
@@ -25,13 +24,13 @@ export const TemplateDishList = ({ queryFunction}: TemplateDishListProps) => {
 	if (isLoading) return <Loader />
 	if (isError) return (
 		<div className="h-screen flex items-center justify-center">
-			<ErrorCard title="Ошибка загрузки" message="Не удалось загрузить блюда этой категории." actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Ошибка загрузки" message="Не удалось загрузить блюда." actionLabel="Повторить" onAction={() => window.location.reload()} />
 		</div>
 	)
 
 	return (
 		<div className='max-w-6xl justify-center mx-auto px-4 py-10'>
-			<MealGrid dishes={dishesToRender} categoryName={selectCategory} />
+			<MealGrid dishes={dishesToRender} categoryName={activeFilter} />
 			{hasMore && (
 				<div className="flex justify-center mt-8">
 					<button onClick={() => handleAddDishes()}
