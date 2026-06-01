@@ -13,13 +13,6 @@ export const getAllCategories = async () => {
 	}
 }
 
-const TARGET_AREAS = [
-	'American',
-	'Italian',
-	'Japanese',
-	'Mexican',
-	'French',
-]
 
 export const getAllAreas = async () => {
 	try {

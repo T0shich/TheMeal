@@ -2,12 +2,9 @@ import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import DishList from '../modules/Category/DishList'
-import { CategoryList } from '../modules/Lists/CategoryList'
-import { CountyList } from '../modules/Lists/CountyList'
 import Search from '../modules/Search/Search'
 import { useFilterStore } from '../store/useStore'
-import { CountyGrid } from '../modules/DishGrid/CountyGrid'
+import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
 const Home = () => {
 	const option = useFilterStore(state => state.filter)
 	return (
@@ -46,8 +43,7 @@ const Home = () => {
 							</div>
 						</div>
 
-						{option === 'Страны' ? <CountyList /> : <CategoryList />}
-						{option === 'Страны' ? <CountyGrid /> : <DishList />}
+						<DynamicDishGrid filterType={option} />
 					</motion.div>
 				</section>
 			</main>

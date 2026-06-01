@@ -17,7 +17,7 @@ interface FilterState {
 export const useStore = create<CategoryState>(set => ({
 	selectCategory: 'Beef',
 	setSelectCategory: (category: string) => set({ selectCategory: category }),
-	selectArea: 'American',
+	selectArea: 'Russian',
 	setSelectArea: (area: string) => set({ selectArea: area }),
 	selectIngredient: 'Chicken',
 	setSelectIngredient: (ingredient: string) => set({ selectIngredient: ingredient }),
