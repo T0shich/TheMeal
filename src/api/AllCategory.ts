@@ -41,7 +41,7 @@ export const getAllIngredients = async () => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const getDishesByCategory = async (category: string) => {
+export const getDishesByFilter = async (category: string) => {
 	const currentCategory = category || 'Beef'
 
 	const response = await axios.get(
@@ -57,6 +57,37 @@ export const getDishesByCategory = async (category: string) => {
 	throw new Error('Network response was not ok')
 }
 
+export const getDishesByArea = async (area: string) => {
+	const currentArea = area || 'American'
+
+	const response = await axios.get(
+		`https://www.themealdb.com/api/json/v1/1/filter.php?a=${currentArea}`,
+	)
+
+	await delay(1000);
+
+	if (response.status === 200) {
+		return response.data.meals
+	}
+
+	throw new Error('Network response was not ok')
+}
+
+export const getDishesByIngredient = async (ingredient: string) => {
+	const currentIngredient = ingredient || 'Chicken'
+
+	const response = await axios.get(
+		`https://www.themealdb.com/api/json/v1/1/filter.php?i=${currentIngredient}`,
+	)
+
+	await delay(1000);
+
+	if (response.status === 200) {
+		return response.data.meals
+	}
+
+	throw new Error('Network response was not ok')
+}
 
 export const getMealById = async (id: string) => {
 	const response = await axios.get(

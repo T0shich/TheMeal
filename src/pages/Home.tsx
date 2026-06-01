@@ -2,10 +2,12 @@ import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { CategoryList } from '../modules/Lists/CategoryList'
 import DishList from '../modules/Category/DishList'
+import { CategoryList } from '../modules/Lists/CategoryList'
+import { CountyList } from '../modules/Lists/CountyList'
 import Search from '../modules/Search/Search'
 import { useFilterStore } from '../store/useStore'
+import { CountyGrid } from '../modules/DishGrid/CountyGrid'
 const Home = () => {
 	const option = useFilterStore(state => state.filter)
 	return (
@@ -35,15 +37,17 @@ const Home = () => {
 						transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
 					>
 						<div className="relative flex flex-col items-center mb-10 md:mb-16">
-							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">Популярные категории</h2>
+							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">
+								{option === 'Страны' ? 'Популярные страны' : 'Популярные категории'}
+							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
 							<div className="absolute right-3 top-0">
-								<Filter Options={['Категории' , 'Страны' , 'Ингридиент']}/>
+								<Filter Options={['Категории', 'Страны', 'Ингридиент']} />
 							</div>
 						</div>
 
-						<CategoryList />
-						<DishList />
+						{option === 'Страны' ? <CountyList /> : <CategoryList />}
+						<CountyGrid />
 					</motion.div>
 				</section>
 			</main>
