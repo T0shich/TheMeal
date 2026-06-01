@@ -13,14 +13,30 @@ export const getAllCategories = async () => {
 	}
 }
 
+const TARGET_AREAS = [
+	'American',
+	'Italian',
+	'Japanese',
+	'Mexican',
+	'French',
+]
+
 export const getAllAreas = async () => {
 	try {
-		const response = await axios.get(
-			'https://www.themealdb.com/api/json/v1/1/list.php?a=list',
-		)
-		if (response.status === 200) {
-			return response.data.meals
-		}
+		return [
+			'Russian',
+			'British',
+			'Chinese',
+			'Greek',
+			'Italian',
+			'Japanese',
+			'Mexican',
+			'Moroccan',
+			'Spanish',
+			'Thai',
+			'Turkish',
+			'Vietnamese'
+		];
 	} catch (error) {
 		console.error('Failed to load areas:', error)
 	}
@@ -39,7 +55,7 @@ export const getAllIngredients = async () => {
 	}
 }
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const getDishesByFilter = async (category: string) => {
 	const currentCategory = category || 'Beef'
@@ -48,7 +64,7 @@ export const getDishesByFilter = async (category: string) => {
 		`https://www.themealdb.com/api/json/v1/1/filter.php?c=${currentCategory}`,
 	)
 
-	await delay(1000);
+	await delay(1000)
 
 	if (response.status === 200) {
 		return response.data.meals
@@ -64,7 +80,7 @@ export const getDishesByArea = async (area: string) => {
 		`https://www.themealdb.com/api/json/v1/1/filter.php?a=${currentArea}`,
 	)
 
-	await delay(1000);
+	await delay(1000)
 
 	if (response.status === 200) {
 		return response.data.meals
@@ -80,7 +96,7 @@ export const getDishesByIngredient = async (ingredient: string) => {
 		`https://www.themealdb.com/api/json/v1/1/filter.php?i=${currentIngredient}`,
 	)
 
-	await delay(1000);
+	await delay(1000)
 
 	if (response.status === 200) {
 		return response.data.meals
@@ -94,7 +110,7 @@ export const getMealById = async (id: string) => {
 		`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
 	)
 
-	await delay(1000);
+	await delay(1000)
 	if (response.status === 200) {
 		return response.data.meals[0]
 	}

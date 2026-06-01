@@ -21,10 +21,10 @@ export const CountyList = () => {
 	return (
 		<TemplateList>
 			<ul className='flex gap-4 no-scrollbar scroll-smooth' >
-				{data?.map((area: { strArea: string }) => (
-					<li key={area.strArea} className='flex w-full justify-center'>
-						<CategoryButton categoryName={area.strArea} setFunction={setArea} filterType={selectArea}>
-							{area.strArea}
+				{data?.map((area: string ) => (
+					<li key={area} className='flex w-full justify-center'>
+						<CategoryButton categoryName={area} setFunction={setArea} filterType={selectArea}>
+							{area}
 						</CategoryButton>
 					</li>
 				))}
