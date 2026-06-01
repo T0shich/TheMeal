@@ -17,7 +17,7 @@ export const Filter = ({ Options }: FilterProps) => {
 	return (
 		<div className="relative">
 			<motion.button
-				className={`text-2xl rounded-full p-3 hover:bg-gray-300 transition-colors ${isOpen ? 'bg-amber-400' : ''}`}
+				className={`text-2xl rounded-full p-3 hover:bg-gray-300 transition-colors cursor-pointer ${isOpen ? 'bg-amber-400' : ''}`}
 				whileHover={{ scale: 1.1 }}
 				whileTap={{ scale: 0.9 }}
 				animate={{ rotate: isOpen ? 360 : 0 }}
@@ -34,13 +34,15 @@ export const Filter = ({ Options }: FilterProps) => {
 						transition={{ ease: "easeOut" }}
 					>
 						{Options.map((option, index) => (
-							<li 
+							<motion.li 
 								key={index} 
 								className="px-4 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md"
 								onClick={() => handleOptionClick(option)}
+								whileHover={{scale: 1.1}}
+								whileTap={{scale: 0.9}}
 							>
 								{option}
-							</li>
+							</motion.li>
 						))}
 					</motion.ul>
 				)}

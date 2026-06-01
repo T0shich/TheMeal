@@ -2,11 +2,12 @@ import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { CategoryList } from '../modules/Category/CategoryList'
+import { CategoryList } from '../modules/Lists/CategoryList'
 import DishList from '../modules/Category/DishList'
 import Search from '../modules/Search/Search'
-
+import { useFilterStore } from '../store/useStore'
 const Home = () => {
+	const option = useFilterStore(state => state.filter)
 	return (
 		<motion.div
 			className="min-h-screen flex flex-col font-sans text-stone-900 bg-stone-50"

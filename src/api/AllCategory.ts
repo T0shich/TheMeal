@@ -13,6 +13,32 @@ export const getAllCategories = async () => {
 	}
 }
 
+export const getAllAreas = async () => {
+	try {
+		const response = await axios.get(
+			'https://www.themealdb.com/api/json/v1/1/list.php?a=list',
+		)
+		if (response.status === 200) {
+			return response.data.meals
+		}
+	} catch (error) {
+		console.error('Failed to load areas:', error)
+	}
+}
+
+export const getAllIngredients = async () => {
+	try {
+		const response = await axios.get(
+			'https://www.themealdb.com/api/json/v1/1/list.php?i=list',
+		)
+		if (response.status === 200) {
+			return response.data.meals
+		}
+	} catch (error) {
+		console.error('Failed to load ingredients:', error)
+	}
+}
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const getDishesByCategory = async (category: string) => {
