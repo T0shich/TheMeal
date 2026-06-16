@@ -71,3 +71,12 @@ export interface Category {
 	strCategoryThumb: string
 	strCategoryDescription: string
 }
+
+export interface Ingredient {
+	idIngredient: string
+	strIngredient: string
+	strDescription: string | null
+	strType: string | null
+	strThumb: string | null
+}
+
