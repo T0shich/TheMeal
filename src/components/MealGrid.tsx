@@ -2,7 +2,7 @@ import type { Meal } from '../types/meal'
 import Card from '../ui/Card'
 interface MealGridProps {
 	dishes: Meal[],
-	categoryName: string,
+	categoryName?: string,
 }
 
 export const MealGrid = ({ dishes, categoryName }: MealGridProps) => {

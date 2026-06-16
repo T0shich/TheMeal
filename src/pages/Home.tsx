@@ -1,7 +1,5 @@
 import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
 import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
 import Search from '../modules/Search/Search'
 import { useFilterStore } from '../store/useStore'
@@ -22,15 +20,11 @@ const Home = () => {
 
 	return (
 		<motion.div
-			className="min-h-screen flex flex-col font-sans text-stone-900 bg-stone-50"
+			className="flex-grow flex flex-col w-full"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
 		>
-			<div className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-stone-200/50 shadow-sm transition-all duration-300">
-				<Header />
-			</div>
-
 			<main className="flex-grow flex flex-col w-full">
 				<section className="w-full relative shadow-2xl z-10">
 					<Search />
@@ -60,8 +54,6 @@ const Home = () => {
 					</motion.div>
 				</section>
 			</main>
-
-			<Footer />
 		</motion.div>
 	)
 }

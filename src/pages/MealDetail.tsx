@@ -1,15 +1,14 @@
 import { flag } from 'country-emoji'
 import { motion } from 'motion/react'
 import { useEffect, useRef } from 'react'
+import { FaRegHeart } from "react-icons/fa6"
 import { useNavigate, useParams } from 'react-router-dom'
-import Footer from '../components/Footer'
-import type { MealDetail } from '../types/meal'
+import { useFollowStore } from '../store/useStore'
+import type { Meal, MealDetail } from '../types/meal'
 import ErrorCard from '../ui/ErrorCard'
 import Loader from '../ui/Loader'
 import { buildIngredients } from '../utils/buildIngredients'
 import { useMealById } from '../utils/useCategories'
-import { FaRegHeart } from "react-icons/fa6";
-import { useFollowStore } from '../store/useStore'
 
 const MealDetail = () => {
 	const params = useParams()
@@ -20,19 +19,19 @@ const MealDetail = () => {
 	const wasFullscreenRef = useRef(false)
 	const { followedMeals, addFollowedMeal, removeFollowedMeal } = useFollowStore()
 
-	const isFollowed = followedMeals.includes(id!)
+	const isFollowed = followedMeals.some((meal: Meal) => meal.idMeal === id)
 
 	const handleFollowClick = () => {
 		if (isFollowed) {
-			removeFollowedMeal(id!)
+			removeFollowedMeal(data!)
 		} else {
-			addFollowedMeal(id!)
+			addFollowedMeal(data!)
 		}
 	}
 
-
-
 	useEffect(() => {
+		window.scrollTo(0, 0)
+
 		const handleFullscreenChange = () => {
 			if (document.fullscreenElement) {
 				wasFullscreenRef.current = true
@@ -55,7 +54,7 @@ const MealDetail = () => {
 		return () => {
 			document.removeEventListener('fullscreenchange', handleFullscreenChange)
 		}
-	}, [])
+	}, [id])
 
 	if (isLoading) return (<Loader />)
 
@@ -68,7 +67,7 @@ const MealDetail = () => {
 	const ingredients = buildIngredients(data)
 
 	return (
-		<article className="min-h-screen flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
+		<article className="flex-grow flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
 			<div className="mx-auto w-full flex-grow max-w-7xl px-4 py-6 md:px-8 md:py-10">
 				<div className="mb-6 flex items-center justify-between">
 					<button
@@ -176,7 +175,6 @@ const MealDetail = () => {
 					</div>
 				</motion.div>
 			</div>
-			<Footer />
 		</article>
 	)
 }

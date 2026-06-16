@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import type { Meal } from '../types/meal'
 
 interface CategoryState {
 	selectCategory: string
@@ -15,9 +16,9 @@ interface FilterState {
 }
 
 interface FollowState {
-	followedMeals: string[]
-	addFollowedMeal: (mealId: string) => void
-	removeFollowedMeal: (mealId: string) => void
+	followedMeals: Meal[]
+	addFollowedMeal: (meal: Meal) => void
+	removeFollowedMeal: (meal: Meal) => void
 }
 
 export const useStore = create<CategoryState>(set => ({
@@ -37,6 +38,6 @@ export const useFilterStore = create<FilterState>(set => ({
 
 export const useFollowStore = create<FollowState>((set) => ({
 	followedMeals: [],
-	addFollowedMeal: (mealId: string) => set((state) => ({ followedMeals: [...state.followedMeals, mealId] })),
-	removeFollowedMeal: (mealId: string) => set((state) => ({ followedMeals: state.followedMeals.filter((id) => id !== mealId) })),
+	addFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: [...state.followedMeals, meal] })),
+	removeFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: state.followedMeals.filter((m) => m.idMeal !== meal.idMeal) })),
 }))
