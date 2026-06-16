@@ -1,3 +1,4 @@
+import { flag } from 'country-emoji'
 import { TemplateList } from '../../components/TemplateList'
 import { useStore } from '../../store/useStore'
 import { CategoryButton } from '../../ui/CategoryButton'
@@ -21,10 +22,10 @@ export const CountyList = () => {
 	return (
 		<TemplateList>
 			<ul className='flex gap-4 no-scrollbar scroll-smooth' >
-				{data?.map((area: string ) => (
+				{data?.map((area: string) => (
 					<li key={area} className='flex w-full justify-center'>
-						<CategoryButton categoryName={area} setFunction={setArea} filterType={selectArea}>
-							{area}
+						<CategoryButton categoryName={area}  setFunction={setArea} filterType={selectArea}>
+							{flag(area)} {area}
 						</CategoryButton>
 					</li>
 				))}

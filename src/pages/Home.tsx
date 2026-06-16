@@ -2,11 +2,24 @@ import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
 import Search from '../modules/Search/Search'
 import { useFilterStore } from '../store/useStore'
-import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
 const Home = () => {
 	const option = useFilterStore(state => state.filter)
+
+	const getHeadingText = () => {
+		switch (option) {
+			case 'Страны':
+				return 'Блюда со всего мира'
+			case 'Ингридиент':
+				return 'Блюда по ингредиенту'
+			case 'Категории':
+			default:
+				return 'Популярные категории блюд'
+		}
+	}
+
 	return (
 		<motion.div
 			className="min-h-screen flex flex-col font-sans text-stone-900 bg-stone-50"
@@ -35,7 +48,7 @@ const Home = () => {
 					>
 						<div className="relative flex flex-col items-center mb-10 md:mb-16">
 							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">
-								{option === 'Страны' ? 'Популярные страны' : 'Популярные категории'}
+								{getHeadingText()}
 							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
 							<div className="absolute right-3 top-0">

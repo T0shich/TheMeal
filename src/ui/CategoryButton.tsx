@@ -22,7 +22,7 @@ export const CategoryButton = (props: CategoryButtonProps) => {
 	}
 
 
-	const style = 'px-4 py-2 rounded-full border border-transparent text-gray-800 transition-colors duration-300 hover:bg-gray-300 shadow-sm my-2 mx-1 cursor-pointer'
+	const style = 'px-4 py-2 rounded-full border border-transparent text-gray-800 transition-colors duration-300 hover:bg-gray-300 shadow-sm my-2 mx-1 cursor-pointer whitespace-nowrap flex items-center justify-center gap-2'
 
 	return (
 		<motion.button

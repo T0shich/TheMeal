@@ -8,6 +8,8 @@ import ErrorCard from '../ui/ErrorCard'
 import Loader from '../ui/Loader'
 import { buildIngredients } from '../utils/buildIngredients'
 import { useMealById } from '../utils/useCategories'
+import { FaRegHeart } from "react-icons/fa6";
+import { useFollowStore } from '../store/useStore'
 
 const MealDetail = () => {
 	const params = useParams()
@@ -16,6 +18,18 @@ const MealDetail = () => {
 	const { data, isLoading, error } = useMealById(id!)
 	const videoSectionRef = useRef<HTMLDivElement | null>(null)
 	const wasFullscreenRef = useRef(false)
+	const { followedMeals, addFollowedMeal, removeFollowedMeal } = useFollowStore()
+
+	const isFollowed = followedMeals.includes(id!)
+
+	const handleFollowClick = () => {
+		if (isFollowed) {
+			removeFollowedMeal(id!)
+		} else {
+			addFollowedMeal(id!)
+		}
+	}
+
 
 
 	useEffect(() => {
@@ -63,6 +77,15 @@ const MealDetail = () => {
 					>
 						← Back
 					</button>
+
+					<motion.button
+						whileHover={{ y: -5 }}
+						onClick={handleFollowClick}
+						className={`inline-flex items-center justify-center rounded-full border border-white/70 bg-white/80 w-11 h-11 text-stone-400 shadow-sm backdrop-blur hover:shadow-md hover:text-red-500 cursor-pointer`}
+						aria-label="Add to favorites"
+					>
+						<FaRegHeart className={`text-xl ${isFollowed ? 'text-red-500' : ''}`} />
+					</motion.button>
 				</div>
 
 				<motion.div

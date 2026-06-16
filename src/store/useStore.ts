@@ -14,6 +14,12 @@ interface FilterState {
 	setFilter: (filter: string) => void
 }
 
+interface FollowState {
+	followedMeals: string[]
+	addFollowedMeal: (mealId: string) => void
+	removeFollowedMeal: (mealId: string) => void
+}
+
 export const useStore = create<CategoryState>(set => ({
 	selectCategory: 'Beef',
 	setSelectCategory: (category: string) => set({ selectCategory: category }),
@@ -26,4 +32,11 @@ export const useStore = create<CategoryState>(set => ({
 export const useFilterStore = create<FilterState>(set => ({
 	filter: '',
 	setFilter: (filter: string) => set({ filter }),
+}))
+
+
+export const useFollowStore = create<FollowState>((set) => ({
+	followedMeals: [],
+	addFollowedMeal: (mealId: string) => set((state) => ({ followedMeals: [...state.followedMeals, mealId] })),
+	removeFollowedMeal: (mealId: string) => set((state) => ({ followedMeals: state.followedMeals.filter((id) => id !== mealId) })),
 }))
