@@ -1,22 +1,20 @@
 import { motion } from 'motion/react'
-import { Filter } from '../components/Filter'
-import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
+import { Link } from 'react-router-dom'
+import { MealGrid } from '../components/MealGrid'
 import Search from '../modules/Search/Search'
-import { useFilterStore } from '../store/useStore'
-const Home = () => {
-	const option = useFilterStore(state => state.filter)
+import type { Meal } from '../types/meal'
+import ErrorCard from '../ui/ErrorCard'
+import Loader from '../ui/Loader'
+import { useCardGrid } from '../utils/useCardGrid'
 
-	const getHeadingText = () => {
-		switch (option) {
-			case 'Страны':
-				return 'Блюда со всего мира'
-			case 'Ингридиент':
-				return 'Блюда по ингредиенту'
-			case 'Категории':
-			default:
-				return 'Популярные категории блюд'
-		}
-	}
+const Home = () => {
+	const { data: comfortMeals, isLoading: isComfortLoading, isError: isComfortError } = useCardGrid('Chicken')
+	const { data: sweetMeals, isLoading: isSweetLoading, isError: isSweetError } = useCardGrid('Dessert')
+
+	const comfortShowcase =
+		comfortMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Быстрый ужин' })) ?? []
+	const sweetShowcase =
+		sweetMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Что-то к чаю' })) ?? []
 
 	return (
 		<motion.div
@@ -40,18 +38,45 @@ const Home = () => {
 						viewport={{ once: true, margin: '-50px' }}
 						transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
 					>
-						<div className="relative flex flex-col items-center mb-10 md:mb-16">
+						<div className="relative flex flex-col items-center mb-10 md:mb-14">
 							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">
-								{getHeadingText()}
+								Что приготовить сегодня
 							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
-							<Filter
-								Options={['Категории', 'Страны', 'Ингридиент']}
-								className="mt-8"
-							/>
+							<p className="mt-6 max-w-2xl text-center text-stone-600">
+								На главной только подборки, а полный фильтруемый каталог вынесен на отдельную страницу.
+							</p>
+							<Link
+								to="/recipes"
+								className="mt-7 inline-flex items-center rounded-full bg-amber-500 px-7 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-amber-600"
+							>
+								Открыть каталог рецептов
+							</Link>
 						</div>
 
-						<DynamicDishGrid filterType={option} />
+						{(isComfortLoading || isSweetLoading) && <Loader />}
+
+						{(isComfortError || isSweetError) && (
+							<div className="pb-10">
+								<ErrorCard
+									title="Не удалось загрузить подборки"
+									message="Попробуйте обновить страницу или откройте каталог рецептов."
+									actionLabel="Обновить"
+									onAction={() => window.location.reload()}
+								/>
+							</div>
+						)}
+
+						{!isComfortLoading && !isSweetLoading && !isComfortError && !isSweetError && (
+							<div className="space-y-14">
+								<div>
+									<MealGrid dishes={comfortShowcase} title="Быстрые идеи для ужина" />
+								</div>
+								<div>
+									<MealGrid dishes={sweetShowcase} title="Сладкое настроение" />
+								</div>
+							</div>
+						)}
 					</motion.div>
 				</section>
 			</main>

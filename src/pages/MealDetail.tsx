@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { FaRegHeart } from "react-icons/fa6"
 import { useNavigate, useParams } from 'react-router-dom'
 import { useFollowStore } from '../store/useStore'
-import type { Meal, MealDetail } from '../types/meal'
+import type { Meal } from '../types/meal'
 import ErrorCard from '../ui/ErrorCard'
 import Loader from '../ui/Loader'
 import { buildIngredients } from '../utils/buildIngredients'

@@ -7,6 +7,7 @@ import { Layout } from './components/Layout.tsx'
 import './index.css'
 import { Favorites } from './pages/Favorites.tsx'
 import MealDetail from './pages/MealDetail.tsx'
+import Recipes from './pages/Recipes.tsx'
 
 const queryClient = new QueryClient()
 
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<App />} />
+            <Route path="recipes" element={<Recipes />} />
             <Route path="meal/:id" element={<MealDetail />} />
             <Route path="favorites" element={<Favorites />} />
           </Route>

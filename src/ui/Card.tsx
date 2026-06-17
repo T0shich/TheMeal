@@ -40,17 +40,17 @@ const Card = (props: Meal) => {
 					<div className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent" />
 				</div>
 				<div className="flex flex-col grow justify-between p-6">
-					<div className="mb-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em]">
-						<span className="rounded-full bg-amber-100 px-3 py-1 text-amber-700">
+					<div className="mb-4 flex items-center gap-2 overflow-hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[0.18em]">
+						<span className="max-w-[58%] truncate rounded-full bg-amber-100 px-3 py-1 text-amber-700">
 							{props.strCategory || 'Recipe'}
 						</span>
 						{props.strArea && (
-							<span className="rounded-full bg-stone-100 px-3 py-1 text-stone-600">
+							<span className="max-w-[42%] truncate rounded-full bg-stone-100 px-3 py-1 text-stone-600">
 								{props.strArea}
 							</span>
 						)}
 					</div>
-					<h2 className="text-xl font-bold text-stone-900 leading-tight line-clamp-2">{props.strMeal}</h2>
+					<h2 className=" text-xl font-bold text-stone-900 leading-tight">{props.strMeal}</h2>
 				</div>
 			</motion.article>
 		</Link>
