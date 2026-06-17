@@ -20,17 +20,17 @@ const Home = () => {
 
 	return (
 		<motion.div
-			className="flex-grow flex flex-col w-full"
+			className="grow flex flex-col w-full"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
 		>
-			<main className="flex-grow flex flex-col w-full">
+			<main className="grow flex flex-col w-full">
 				<section className="w-full relative shadow-2xl z-10">
 					<Search />
 				</section>
 
-				<section className="w-full flex-grow relative bg-linear-to-br from-stone-100 via-orange-50 to-amber-100 pt-16 pb-24">
+				<section className="w-full grow relative bg-linear-to-br from-stone-100 via-orange-50 to-amber-100 pt-16 pb-24">
 					<div className="absolute inset-0 bg-white/40 pointer-events-none" />
 
 					<motion.div
@@ -45,9 +45,10 @@ const Home = () => {
 								{getHeadingText()}
 							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
-							<div className="absolute right-3 top-0">
-								<Filter Options={['Категории', 'Страны', 'Ингридиент']} />
-							</div>
+							<Filter
+								Options={['Категории', 'Страны', 'Ингридиент']}
+								className="mt-8"
+							/>
 						</div>
 
 						<DynamicDishGrid filterType={option} />

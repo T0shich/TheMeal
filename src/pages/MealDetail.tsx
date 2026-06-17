@@ -65,10 +65,16 @@ const MealDetail = () => {
 	}
 
 	const ingredients = buildIngredients(data)
+	const instructionSteps: string[] = (data?.strInstructions || '')
+		.split(/\r?\n+/)
+		.flatMap((line: string) => line.split(/(?<=[.!?])\s+(?=[A-ZА-ЯЁ])/))
+		.map((step: string) => step.trim())
+		.filter(Boolean)
+	const hasVideo = Boolean(data?.strYoutube)
 
 	return (
-		<article className="flex-grow flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
-			<div className="mx-auto w-full flex-grow max-w-7xl px-4 py-6 md:px-8 md:py-10">
+		<article className="grow flex flex-col bg-linear-to-br from-stone-100 via-orange-50 to-amber-100">
+			<div className="mx-auto w-full grow max-w-7xl px-4 py-6 md:px-8 md:py-10">
 				<div className="mb-6 flex items-center justify-between">
 					<button
 						onClick={() => navigate(-1)}
@@ -124,19 +130,28 @@ const MealDetail = () => {
 					</div>
 
 					<div className="space-y-6">
-						<section className="rounded-4xl border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur">
+
+
+						<section id="instructions" className="scroll-mt-24 rounded-4xl border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur">
 							<div className="mb-4 flex items-center justify-between gap-4">
 								<div>
 									<p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600">Instructions</p>
 									<h2 className="mt-1 text-2xl font-bold text-gray-900">How to cook it</h2>
 								</div>
 							</div>
-							<p className="whitespace-pre-line text-sm leading-7 text-gray-700 md:text-base">
-								{data?.strInstructions}
-							</p>
+							<ol className="space-y-3">
+								{instructionSteps.map((step: string, index: number) => (
+									<li key={`${step}-${index}`} className="rounded-2xl bg-stone-50 px-4 py-3 text-sm leading-7 text-gray-700 md:text-base">
+										<span className="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-sm font-bold text-amber-700">
+											{index + 1}
+										</span>
+										{step}
+									</li>
+								))}
+							</ol>
 						</section>
 
-						<section className="rounded-4xl border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur">
+						<section id="ingredients" className="scroll-mt-24 rounded-4xl border border-white/70 bg-white/80 p-6 shadow-xl backdrop-blur">
 							<div className="mb-4 flex items-center justify-between gap-4">
 								<div>
 									<p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600">Ingredients</p>
@@ -161,17 +176,19 @@ const MealDetail = () => {
 								))}
 							</div>
 						</section>
-						<section ref={videoSectionRef}>
-							<span className='p-3 font-semibold uppercase text-2xl text-amber-600'>The Video Recipe</span>
-							<iframe
-								className='w-full aspect-video rounded-2xl mt-1 shadow-2xl'
-								src={data?.strYoutube?.replace('watch?v=', 'embed/')}
-								title="YouTube video player"
-								allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								allowFullScreen
-							>
-							</iframe>
-						</section>
+						{hasVideo && (
+							<section id="video" ref={videoSectionRef} className="scroll-mt-24">
+								<span className='p-3 font-semibold uppercase text-2xl text-amber-600'>The Video Recipe</span>
+								<iframe
+									className='w-full aspect-video rounded-2xl mt-1 shadow-2xl'
+									src={data?.strYoutube?.replace('watch?v=', 'embed/')}
+									title="YouTube video player"
+									allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowFullScreen
+								>
+								</iframe>
+							</section>
+						)}
 					</div>
 				</motion.div>
 			</div>

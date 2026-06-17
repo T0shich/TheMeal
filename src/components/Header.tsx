@@ -1,24 +1,32 @@
 import { FaRegUser, FaSearch } from "react-icons/fa"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import HeaderLi from "../ui/HeaderLi"
+
 const Header = () => {
+	const navigate = useNavigate()
+
+	const handleSearchClick = () => {
+		navigate('/')
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
+
 	return (
-		<header className=' h-20 w-full flex items-center justify-between px-16'>
-			<div className="text-2xl font-bold text-[#1C1917]">
+		<header className='h-20 w-full flex items-center gap-3 px-4 sm:px-6 lg:px-12'>
+			<div className="shrink-0 text-lg font-bold text-[#1C1917] sm:text-xl lg:text-2xl">
 				<Link to="/"><h2>The Modern Kitchen</h2></Link>
 			</div>
-			<div className="">
-				<ul className='flex gap-10 text-[#78716C] text-base'>
-					<HeaderLi><Link to="/">Главная</Link></HeaderLi>
-					<HeaderLi><Link to="/">Рецепты</Link></HeaderLi>
-					<HeaderLi><Link to="/favorites">Избранное</Link></HeaderLi>
-					<HeaderLi><Link to="/pantry">Мои продукты</Link></HeaderLi>
+			<nav className='flex-1 overflow-x-auto no-scrollbar'>
+				<ul className='mx-auto flex w-max items-center gap-5 whitespace-nowrap text-sm text-[#78716C] sm:text-base md:gap-8 lg:gap-10'>
+					<HeaderLi to="/">Главная</HeaderLi>
+					<HeaderLi to="/recipes">Рецепты</HeaderLi>
+					<HeaderLi to="/favorites">Избранное</HeaderLi>
+					<HeaderLi to="/pantry">Мои продукты</HeaderLi>
 				</ul>
-			</div>
-			<div className="">
+			</nav>
+			<div className="hidden shrink-0 sm:block">
 				<ul className='flex gap-6 '>
-					<HeaderLi isIcon><FaSearch className='text-[15px]' /></HeaderLi>
-					<HeaderLi isIcon><FaRegUser className='text-[15px]' /></HeaderLi>
+					<HeaderLi isIcon onClick={handleSearchClick}><FaSearch className='text-[17px]' /></HeaderLi>
+					<HeaderLi isIcon to="/profile"><FaRegUser className='text-[17px]' /></HeaderLi>
 				</ul>
 			</div>
 		</header>

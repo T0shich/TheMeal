@@ -1,52 +1,45 @@
-import { AnimatePresence, motion } from "motion/react"
-import { useState } from 'react'
-import { IoFilterSharp } from "react-icons/io5"
+import { motion } from "motion/react"
 import { useFilterStore } from '../store/useStore'
 
 interface FilterProps {
-	Options: string[]}
+	Options: string[]
+	className?: string
+}
 
-export const Filter = ({ Options }: FilterProps) => {
-	const [isOpen, setIsOpen] = useState(false)
+export const Filter = ({ Options, className }: FilterProps) => {
+	const filter = useFilterStore((state) => state.filter)
+	const setFilter = useFilterStore((state) => state.setFilter)
 
 	const handleOptionClick = (option: string) => {
-		useFilterStore.getState().setFilter(option)
-		setIsOpen(false)
+		setFilter(option)
 	}
 
+	const activeOption = filter || Options[0]
+
 	return (
-		<div className="relative">
-			<motion.button
-				className={`text-2xl rounded-full p-3 hover:bg-gray-300 transition-colors cursor-pointer ${isOpen ? 'bg-amber-400' : ''}`}
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.9 }}
-				animate={{ rotate: isOpen ? 360 : 0 }}
-				transition={{ duration: 0.4, ease: "easeInOut" }}
-				onClick={() => setIsOpen(!isOpen)}
-			><IoFilterSharp /> </motion.button>
-			<AnimatePresence>
-				{isOpen && (
-					<motion.ul 
-						className="absolute flex gap-5 top-16 right-0 mt-2 w-fit rounded-lg p-4 z-10 max-w-6xl"
-						initial={{ opacity: 0, x: 50 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: 50 }}
-						transition={{ ease: "easeOut" }}
-					>
-						{Options.map((option, index) => (
-							<motion.li 
-								key={index} 
-								className="px-4 py-2 hover:bg-gray-100 rounded-2xl cursor-pointer shadow-md"
+		<div className={className}>
+			<ul className="flex flex-wrap justify-center gap-3 md:gap-4">
+				{Options.map((option) => {
+					const isActive = option === activeOption
+
+					return (
+						<li key={option}>
+							<motion.button
+								type="button"
 								onClick={() => handleOptionClick(option)}
-								whileHover={{scale: 1.1}}
-								whileTap={{scale: 0.9}}
+								className={`rounded-full border px-5 py-2 text-sm font-semibold tracking-wide shadow-sm transition cursor-pointer md:text-base ${isActive
+									? 'border-amber-500 bg-amber-500 text-white'
+									: 'border-white/80 bg-white/80 text-stone-700 hover:border-amber-300 hover:text-amber-700'
+									}`}
+								whileHover={{ y: -2 }}
+								whileTap={{ scale: 0.98 }}
 							>
 								{option}
-							</motion.li>
-						))}
-					</motion.ul>
-				)}
-			</AnimatePresence>
+							</motion.button>
+						</li>
+					)
+				})}
+			</ul>
 		</div>
 
 	)

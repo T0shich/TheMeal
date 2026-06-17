@@ -2,6 +2,8 @@ export interface Meal {
 	idMeal: string
 	strMeal: string
 	strMealThumb?: string
+	strCategory?: string
+	strArea?: string
 }
 
 export interface MealDetail {
@@ -79,4 +81,3 @@ export interface Ingredient {
 	strType: string | null
 	strThumb: string | null
 }
-
