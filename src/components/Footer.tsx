@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
 	return (
-		<footer className="bg-stone-900 text-stone-300 py-12 px-6 md:px-16 mt-auto w-full shadow-inner">
+		<footer className="app-footer py-12 px-6 md:px-16 mt-auto w-full shadow-inner">
 			<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
 				<div className="col-span-1 md:col-span-2">
 					<h2 className="text-2xl font-bold text-white mb-4">The Modern Kitchen</h2>
@@ -33,7 +33,7 @@ const Footer = () => {
 
 			<div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-stone-800 flex flex-col md:flex-row items-center justify-between text-sm text-stone-500">
 				<p>&copy; {new Date().getFullYear()} The Modern Kitchen. </p>
-			
+
 			</div>
 		</footer>
 	)

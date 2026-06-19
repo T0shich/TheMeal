@@ -27,10 +27,7 @@ export const Filter = ({ Options, className }: FilterProps) => {
 							<motion.button
 								type="button"
 								onClick={() => handleOptionClick(option)}
-								className={`rounded-full border px-5 py-2 text-sm font-semibold tracking-wide shadow-sm transition cursor-pointer md:text-base ${isActive
-									? 'border-amber-500 bg-amber-500 text-white'
-									: 'border-white/80 bg-white/80 text-stone-700 hover:border-amber-300 hover:text-amber-700'
-									}`}
+								className={`app-chip cursor-pointer md:text-base ${isActive ? 'app-chip-active' : 'app-chip-soft'}`}
 								whileHover={{ y: -2 }}
 								whileTap={{ scale: 0.98 }}
 							>

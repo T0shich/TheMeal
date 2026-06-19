@@ -12,11 +12,11 @@ const Header = () => {
 
 	return (
 		<header className='h-20 w-full flex items-center gap-3 px-4 sm:px-6 lg:px-12'>
-			<div className="shrink-0 text-lg font-bold text-[#1C1917] sm:text-xl lg:text-2xl">
-				<Link to="/"><h2>The Modern Kitchen</h2></Link>
+			<div className="shrink-0 app-brand text-lg sm:text-xl lg:text-2xl">
+				<Link to="/" className="app-brand-link"><h2>The Modern Kitchen</h2></Link>
 			</div>
 			<nav className='flex-1 overflow-x-auto no-scrollbar'>
-				<ul className='mx-auto flex w-max items-center gap-5 whitespace-nowrap text-sm text-[#78716C] sm:text-base md:gap-8 lg:gap-10'>
+				<ul className='mx-auto flex w-max items-center gap-5 whitespace-nowrap text-sm text-stone-600 sm:text-base md:gap-8 lg:gap-10'>
 					<HeaderLi to="/">Главная</HeaderLi>
 					<HeaderLi to="/recipes">Каталог</HeaderLi>
 					<HeaderLi to="/favorites">Избранное</HeaderLi>

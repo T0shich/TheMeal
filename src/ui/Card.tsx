@@ -23,7 +23,7 @@ const Card = (props: Meal) => {
 	return (
 		<Link to={`/meal/${props.idMeal}`}>
 			<motion.article
-				className='bg-white rounded-2xl shadow-lg overflow-hidden w-89.25 h-105 flex flex-col border border-white/70'
+				className='app-card rounded-3xl overflow-hidden w-89.25 h-105 flex flex-col'
 				whileHover={{ y: -6 }}
 				whileTap={{ scale: 0.99 }}
 			>

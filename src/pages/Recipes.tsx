@@ -30,12 +30,10 @@ const Recipes = () => {
 
 				<div className="relative z-10 mx-auto w-full max-w-7xl px-4 md:px-8">
 					<div className="mb-8 p-2 md:p-4">
-						<h1 className="text-3xl font-black tracking-tight text-stone-900 md:text-5xl">
+						<h1 className="text-3xl font-black translate-x-[25%] tracking-tight text-stone-900 md:text-5xl">
 							{getHeadingText()}
 						</h1>
-						<p className="mt-3 text-sm text-stone-600 md:text-base">
-							Рабочая зона поиска: выбирайте фильтр, листайте категории и находите нужное блюдо под конкретную задачу.
-						</p>
+						
 						<Filter Options={['Категории', 'Страны', 'Ингридиент']} className="mt-6" />
 					</div>
 

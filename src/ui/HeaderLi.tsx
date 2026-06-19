@@ -16,13 +16,13 @@ const HeaderLi = (props: Props) => {
 			to={props.to}
 			end={props.to === '/'}
 			className={({ isActive }) =>
-				`${baseStyle} ${props.isIcon ? 'border-transparent hover:text-[#9A442D]' : 'border-transparent text-stone-600 hover:text-[#9A442D] hover:font-semibold'} ${isActive && !props.isIcon ? 'text-[#9A442D] border-[#9A442D] font-bold' : ''}`
+				`${baseStyle} ${props.isIcon ? 'app-nav-icon border-transparent' : 'app-nav-link'} ${isActive && !props.isIcon ? 'app-nav-link-active' : ''}`
 			}
 		>
 			{props.children}
 		</NavLink>
 	) : (
-		<button onClick={props.onClick} className={`${baseStyle} bg-transparent border-transparent ${props.isIcon ? 'hover:text-[#9A442D]' : 'text-stone-600 hover:text-[#9A442D] hover:font-semibold'}`}>
+		<button onClick={props.onClick} className={`${baseStyle} bg-transparent border-transparent ${props.isIcon ? 'app-nav-icon' : 'app-nav-link'}`}>
 			{props.children}
 		</button>
 	)

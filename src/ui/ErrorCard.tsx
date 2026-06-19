@@ -11,22 +11,22 @@ type ErrorCardProps = {
 const ErrorCard = ({ title = 'Something went wrong', message = 'There was an error loading data. Please try again later.', actionLabel = 'Refresh', actionTo, onAction }: ErrorCardProps) => {
 	return (
 		<section className='flex flex-col min-h-screen items-center justify-center'>
-			<div className="mx-auto max-w-xl p-6 rounded-3xl bg-white/90 backdrop-blur-md border border-white/60 shadow-xl text-center">
+			<div className="app-panel mx-auto max-w-xl p-6 rounded-3xl text-center">
 				<div className="text-6xl mb-3">⚠️</div>
-				<h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-				<p className="mt-2 text-sm text-gray-600">{message}</p>
+				<h3 className="text-xl font-semibold text-stone-900">{title}</h3>
+				<p className="mt-2 text-sm text-stone-600">{message}</p>
 
 				<div className="mt-5 flex justify-center gap-3">
 					{actionTo ? (
-						<Link to={actionTo} className="px-4 py-2 rounded-full bg-amber-500 text-white font-medium shadow-sm hover:brightness-95">
+						<Link to={actionTo} className="app-button">
 							{actionLabel}
 						</Link>
 					) : (
-						<button onClick={onAction} className="px-4 py-2 rounded-full bg-amber-500 text-white font-medium shadow-sm hover:brightness-95">
+						<button onClick={onAction} className="app-button">
 							{actionLabel}
 						</button>
 					)}
-					<Link to="/" className="px-4 py-2 rounded-full border border-gray-200 text-sm text-gray-700">Go home</Link>
+					<Link to="/" className="app-button-secondary text-sm">Go home</Link>
 				</div>
 			</div>
 		</section>
