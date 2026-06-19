@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import type { Meal } from '../types/meal'
 
 interface CategoryState {
@@ -36,8 +37,15 @@ export const useFilterStore = create<FilterState>(set => ({
 }))
 
 
-export const useFollowStore = create<FollowState>((set) => ({
-	followedMeals: [],
-	addFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: [...state.followedMeals, meal] })),
-	removeFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: state.followedMeals.filter((m) => m.idMeal !== meal.idMeal) })),
-}))
+export const useFollowStore = create<FollowState>()(
+	persist(
+		(set) => ({
+			followedMeals: [],
+			addFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: [...state.followedMeals, meal] })),
+			removeFollowedMeal: (meal: Meal) => set((state) => ({ followedMeals: state.followedMeals.filter((m) => m.idMeal !== meal.idMeal) })),
+		}),
+		{
+			name: 'followed-meals-storage',
+		}
+	)
+)

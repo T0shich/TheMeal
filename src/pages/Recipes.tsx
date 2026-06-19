@@ -35,7 +35,7 @@ const Recipes = () => {
 
 				<div className="relative z-10 mx-auto w-full max-w-7xl px-4 md:px-8">
 					<div className="mb-8 p-2 md:p-4">
-						<h1 className="text-3xl font-black translate-x-[25%] tracking-tight text-stone-900 md:text-5xl">
+						<h1 className="text-3xl font-black text-center tracking-tight text-stone-900 md:text-5xl">
 							{getHeadingText()}
 						</h1>
 

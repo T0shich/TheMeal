@@ -16,17 +16,15 @@ const Header = () => {
 				<Link to="/" className="app-brand-link"><h2>The Modern Kitchen</h2></Link>
 			</div>
 			<nav className='flex-1 overflow-x-auto no-scrollbar'>
-				<ul className='mx-auto flex w-max items-center gap-5 whitespace-nowrap text-sm text-stone-600 sm:text-base md:gap-8 lg:gap-10'>
+				<ul className='mx-auto flex w-max items-center gap-7 whitespace-nowrap text-lg text-stone-600 sm:text-base md:gap-8 lg:gap-10'>
 					<HeaderLi to="/">Home</HeaderLi>
 					<HeaderLi to="/recipes">Catalog</HeaderLi>
 					<HeaderLi to="/favorites">Favorites</HeaderLi>
-					<HeaderLi to="/pantry">My Pantry</HeaderLi>
 				</ul>
 			</nav>
 			<div className="hidden shrink-0 sm:block">
 				<ul className='flex gap-6 '>
 					<HeaderLi isIcon onClick={handleSearchClick}><FaSearch className='text-[17px]' /></HeaderLi>
-					<HeaderLi isIcon to="/profile"><FaRegUser className='text-[17px]' /></HeaderLi>
 				</ul>
 			</div>
 		</header>
