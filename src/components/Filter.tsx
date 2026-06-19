@@ -28,8 +28,8 @@ export const Filter = ({ Options, className }: FilterProps) => {
 								type="button"
 								onClick={() => handleOptionClick(option)}
 								className={`app-chip cursor-pointer md:text-base ${isActive ? 'app-chip-active' : 'app-chip-soft'}`}
-								whileHover={{ y: -2 }}
-								whileTap={{ scale: 0.98 }}
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.9 }}
 							>
 								{option}
 							</motion.button>

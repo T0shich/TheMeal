@@ -43,15 +43,7 @@ const Home = () => {
 								Что приготовить сегодня
 							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
-							<p className="mt-6 max-w-2xl text-center text-stone-600">
-								На главной только подборки, а полный фильтруемый каталог вынесен на отдельную страницу.
-							</p>
-							<Link
-								to="/recipes"
-								className="mt-7 inline-flex items-center rounded-full bg-amber-500 px-7 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-amber-600"
-							>
-								Открыть каталог рецептов
-							</Link>
+
 						</div>
 
 						{(isComfortLoading || isSweetLoading) && <Loader />}
@@ -77,6 +69,14 @@ const Home = () => {
 								</div>
 							</div>
 						)}
+						<motion.div className="mt-12 flex justify-center"
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.9 }}>
+							<Link to="/recipes" className="app-button">
+								Посмотреть все рецепты
+							</Link>
+						</motion.div>
+
 					</motion.div>
 				</section>
 			</main>

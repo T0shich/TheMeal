@@ -2,9 +2,14 @@ import { motion } from 'motion/react'
 import { Filter } from '../components/Filter'
 import { DynamicDishGrid } from '../modules/Category/DynamicDishGrid'
 import { useFilterStore } from '../store/useStore'
+import { useEffect } from 'react'
 
 const Recipes = () => {
 	const option = useFilterStore(state => state.filter)
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
 
 	const getHeadingText = () => {
 		switch (option) {
@@ -33,7 +38,7 @@ const Recipes = () => {
 						<h1 className="text-3xl font-black translate-x-[25%] tracking-tight text-stone-900 md:text-5xl">
 							{getHeadingText()}
 						</h1>
-						
+
 						<Filter Options={['Категории', 'Страны', 'Ингридиент']} className="mt-6" />
 					</div>
 

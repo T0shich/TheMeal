@@ -4,6 +4,7 @@ import Loader from '../ui/Loader'
 import ErrorCard from '../ui/ErrorCard'
 import { MealGrid } from './MealGrid'
 import type { Meal } from '../types/meal'
+import { motion } from 'motion/react'
 
 interface TemplateDishListProps {
 	queryFunction: (filter: string) => UseQueryResult<Meal[], Error>
@@ -33,10 +34,13 @@ export const TemplateDishList = ({ queryFunction, activeFilter }: TemplateDishLi
 			<MealGrid dishes={dishesToRender} categoryName={activeFilter} />
 			{hasMore && (
 				<div className="flex justify-center mt-8">
-					<button onClick={() => handleAddDishes()}
-						className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-md">
+					<motion.button onClick={() => handleAddDishes()}
+						className="app-button "
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
+					>
 						Загрузить ещё
-					</button>
+					</motion.button>
 				</div>
 			)}
 		</div>
