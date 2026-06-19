@@ -12,9 +12,9 @@ const Home = () => {
 	const { data: sweetMeals, isLoading: isSweetLoading, isError: isSweetError } = useCardGrid('Dessert')
 
 	const comfortShowcase =
-		comfortMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Быстрый ужин' })) ?? []
+		comfortMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Quick Dinner' })) ?? []
 	const sweetShowcase =
-		sweetMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Что-то к чаю' })) ?? []
+		sweetMeals?.slice(0, 6).map((meal: Meal) => ({ ...meal, strCategory: 'Sweet Treats' })) ?? []
 
 	return (
 		<motion.div
@@ -40,7 +40,7 @@ const Home = () => {
 					>
 						<div className="relative flex flex-col items-center mb-10 md:mb-14">
 							<h2 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">
-								Что приготовить сегодня
+								What to cook today
 							</h2>
 							<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
 
@@ -51,9 +51,9 @@ const Home = () => {
 						{(isComfortError || isSweetError) && (
 							<div className="pb-10">
 								<ErrorCard
-									title="Не удалось загрузить подборки"
-									message="Попробуйте обновить страницу или откройте каталог рецептов."
-									actionLabel="Обновить"
+									title="Failed to load selections"
+									message="Please try refreshing the page or explore the recipes catalog."
+									actionLabel="Refresh"
 									onAction={() => window.location.reload()}
 								/>
 							</div>
@@ -62,10 +62,10 @@ const Home = () => {
 						{!isComfortLoading && !isSweetLoading && !isComfortError && !isSweetError && (
 							<div className="space-y-14">
 								<div>
-									<MealGrid dishes={comfortShowcase} title="Быстрые идеи для ужина" />
+									<MealGrid dishes={comfortShowcase} title="Quick dinner ideas" />
 								</div>
 								<div>
-									<MealGrid dishes={sweetShowcase} title="Сладкое настроение" />
+									<MealGrid dishes={sweetShowcase} title="Sweet Treats" />
 								</div>
 							</div>
 						)}
@@ -73,7 +73,7 @@ const Home = () => {
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}>
 							<Link to="/recipes" className="app-button">
-								Посмотреть все рецепты
+								Browse all recipes
 							</Link>
 						</motion.div>
 

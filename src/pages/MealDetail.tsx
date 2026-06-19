@@ -60,7 +60,7 @@ const MealDetail = () => {
 
 	if (error) {
 		return (
-			<ErrorCard title="Ошибка загрузки" message={`Не удалось загрузить данные блюда:${error.message}`} actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Loading Error" message={`Failed to load meal details: ${error.message}`} actionLabel="Retry" onAction={() => window.location.reload()} />
 		)
 	}
 

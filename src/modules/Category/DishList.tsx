@@ -22,7 +22,7 @@ const DishList = () => {
 	if (isLoading) return <Loader />
 	if (isError) return (
 		<div className="h-screen flex items-center justify-center">
-			<ErrorCard title="Ошибка загрузки" message="Не удалось загрузить блюда этой категории." actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Loading Error" message="Failed to load dishes in this category." actionLabel="Retry" onAction={() => window.location.reload()} />
 		</div>
 	)
 
@@ -33,7 +33,7 @@ const DishList = () => {
 				<div className="flex justify-center mt-8">
 					<button onClick={() => handleAddDishes()}
 						className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-md">
-						Загрузить ещё
+						Load More
 					</button>
 				</div>
 			)}

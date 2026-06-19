@@ -24,7 +24,7 @@ export const IngridientList = () => {
 
 	if (error) return (
 		<div className="w-full flex justify-center">
-			<ErrorCard title="Ошибка загрузки" message={`Не удалось загрузить ингредиенты: ${error.message}`} actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Loading Error" message={`Failed to load ingredients: ${error.message}`} actionLabel="Retry" onAction={() => window.location.reload()} />
 		</div>
 	)
 
@@ -42,7 +42,7 @@ export const IngridientList = () => {
 					<Command.Input
 						value={query}
 						onValueChange={setQuery}
-						placeholder='Найдите ингредиент...'
+						placeholder='Search ingredients...'
 						className='w-full rounded-3xl border border-amber-200 bg-white/90 pl-14 pr-6 py-4 text-base outline-none placeholder:text-gray-400 shadow-lg'
 					/>
 				</div>
@@ -56,10 +56,10 @@ export const IngridientList = () => {
 							transition={{ duration: 0.18 }}
 						>
 							<Command.List className="absolute left-0 top-full z-30 mt-3 max-h-70 w-full overflow-y-auto rounded-2xl border border-amber-100 bg-white p-2 shadow-xl shadow-black/10">
-								{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Загрузка...</Command.Loading>}
+								{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Loading...</Command.Loading>}
 								{error && <div className="p-4 text-center text-sm text-red-600">{error}</div>}
 								{!isLoading && query.trim() !== '' && filteredIngredients.length === 0 && (
-									<div className="p-4 text-center text-sm text-gray-500">Ничего не найдено</div>
+									<div className="p-4 text-center text-sm text-gray-500">No ingredients found</div>
 								)}
 
 								{filteredIngredients.map((ingredient: Ingredient) => (

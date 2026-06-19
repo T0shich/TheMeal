@@ -15,7 +15,7 @@ export const DynamicDishGrid = ({ filterType }: DynamicDishGridProps) => {
 	const selectIngredient = useStore((state) => state.selectIngredient)
 
 	switch (filterType) {
-		case 'Категории':
+		case 'Categories':
 		case '':
 			return (
 				<>
@@ -23,14 +23,14 @@ export const DynamicDishGrid = ({ filterType }: DynamicDishGridProps) => {
 					<TemplateDishList queryFunction={useCardGrid} activeFilter={selectCategory} />
 				</>
 			)
-		case 'Страны':
+		case 'Countries':
 			return (
 				<>
 					<CountyList />
 					<TemplateDishList queryFunction={useCardGridByArea} activeFilter={selectArea} />
 				</>
 			)
-		case 'Ингридиент':
+		case 'Ingredients':
 			return (
 				<>
 					<IngridientList />

@@ -24,29 +24,29 @@ export const Favorites = () => {
 				>
 					<div className="relative flex flex-col items-center mb-10 md:mb-16 mt-8">
 						<h1 className="text-4xl md:text-5xl font-black text-stone-900 tracking-tight drop-shadow-sm text-center px-12">
-							Избранные рецепты
+							Favorite Recipes
 						</h1>
 						<div className="w-24 h-1 bg-amber-500 mt-6 rounded-full opacity-80" />
 					</div>
 
 					{followedMeals.length > 0 ? (
 						<div className="max-w-6xl justify-center mx-auto">
-							<MealGrid dishes={followedMeals} categoryName="Избранные" />
+							<MealGrid dishes={followedMeals} categoryName="Favorites" />
 						</div>
 					) : (
 						<div className="flex flex-col items-center justify-center py-20 px-4 text-center bg-white/60 backdrop-blur-md rounded-3xl shadow-lg border border-white/70 max-w-2xl mx-auto">
 							<span className="text-7xl mb-6">🍽️</span>
 							<h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-								В избранном пока ничего нет
+								Your favorites list is empty
 							</h2>
 							<p className="text-gray-600 mb-8 max-w-md text-lg">
-								Отмечайте понравившиеся рецепты сердечком, чтобы они всегда были под рукой.
+								Tap the heart icon on your favorite recipes to save them here.
 							</p>
 							<Link
 								to="/"
 								className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
 							>
-								Найти вкусненькое
+								Find something tasty
 							</Link>
 						</div>
 					)}

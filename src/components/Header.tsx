@@ -17,10 +17,10 @@ const Header = () => {
 			</div>
 			<nav className='flex-1 overflow-x-auto no-scrollbar'>
 				<ul className='mx-auto flex w-max items-center gap-5 whitespace-nowrap text-sm text-stone-600 sm:text-base md:gap-8 lg:gap-10'>
-					<HeaderLi to="/">Главная</HeaderLi>
-					<HeaderLi to="/recipes">Каталог</HeaderLi>
-					<HeaderLi to="/favorites">Избранное</HeaderLi>
-					<HeaderLi to="/pantry">Мои продукты</HeaderLi>
+					<HeaderLi to="/">Home</HeaderLi>
+					<HeaderLi to="/recipes">Catalog</HeaderLi>
+					<HeaderLi to="/favorites">Favorites</HeaderLi>
+					<HeaderLi to="/pantry">My Pantry</HeaderLi>
 				</ul>
 			</nav>
 			<div className="hidden shrink-0 sm:block">

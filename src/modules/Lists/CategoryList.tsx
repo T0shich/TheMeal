@@ -18,7 +18,7 @@ export const CategoryList = () => {
 
 	if (error) return (
 		<div className="w-full flex justify-center">
-			<ErrorCard title="Ошибка загрузки" message={`Не удалось загрузить категории: ${error.message}`} actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Loading Error" message={`Failed to load categories: ${error.message}`} actionLabel="Retry" onAction={() => window.location.reload()} />
 		</div>
 	)
 

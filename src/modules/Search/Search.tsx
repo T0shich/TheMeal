@@ -65,7 +65,7 @@ const Search = () => {
 							transition={{ duration: 0.7 }}
 							className="mb-4 text-4xl font-black tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl"
 						>
-							Что приготовим сегодня?
+							What shall we cook today?
 						</motion.h1>
 						<motion.p
 							initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ const Search = () => {
 							transition={{ duration: 0.7, delay: 0.1 }}
 							className="mx-auto max-w-2xl text-lg font-medium text-white/90 drop-shadow-md sm:text-xl"
 						>
-							Откройте для себя тысячи вкуснейших рецептов со всего мира
+							Discover thousands of delicious recipes from all over the world
 						</motion.p>
 					</div>
 
@@ -89,7 +89,7 @@ const Search = () => {
 							<Command.Input
 								value={query}
 								onValueChange={setQuery}
-								placeholder='Найдите рецепт...'
+								placeholder='Search recipes...'
 								className='w-full rounded-3xl border border-amber-200 bg-white/90 pl-14 pr-6 py-4 text-base outline-none placeholder:text-gray-400 shadow-lg'
 							/>
 						</div>
@@ -103,10 +103,10 @@ const Search = () => {
 									transition={{ duration: 0.18 }}
 								>
 									<Command.List className="absolute left-0 top-full z-30 mt-3 max-h-70 w-full overflow-y-auto rounded-2xl border border-amber-100 bg-white p-2 shadow-2xl shadow-black/10">
-										{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Загрузка...</Command.Loading>}
+										{isLoading && <Command.Loading className="p-4 text-center text-sm text-gray-500">Loading...</Command.Loading>}
 										{error && <div className="p-4 text-center text-sm text-red-600">{error}</div>}
 										{!isLoading && query.trim() !== '' && meals.length === 0 && (
-											<div className="p-4 text-center text-sm text-gray-500">Ничего не найдено</div>
+											<div className="p-4 text-center text-sm text-gray-500">No recipes found</div>
 										)}
 
 										{meals.map(meal => (

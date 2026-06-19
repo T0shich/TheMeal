@@ -25,7 +25,7 @@ export const TemplateDishList = ({ queryFunction, activeFilter }: TemplateDishLi
 	if (isLoading) return <Loader />
 	if (isError) return (
 		<div className="h-screen flex items-center justify-center">
-			<ErrorCard title="Ошибка загрузки" message="Не удалось загрузить блюда." actionLabel="Повторить" onAction={() => window.location.reload()} />
+			<ErrorCard title="Loading Error" message="Failed to load dishes." actionLabel="Retry" onAction={() => window.location.reload()} />
 		</div>
 	)
 
@@ -39,7 +39,7 @@ export const TemplateDishList = ({ queryFunction, activeFilter }: TemplateDishLi
 						whileHover={{ scale: 1.1 }}
 						whileTap={{ scale: 0.9 }}
 					>
-						Загрузить ещё
+						Load More
 					</motion.button>
 				</div>
 			)}

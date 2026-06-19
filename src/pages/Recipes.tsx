@@ -13,13 +13,13 @@ const Recipes = () => {
 
 	const getHeadingText = () => {
 		switch (option) {
-			case 'Страны':
-				return 'Каталог по странам'
-			case 'Ингридиент':
-				return 'Каталог по ингредиентам'
-			case 'Категории':
+			case 'Countries':
+				return 'Catalog by Countries'
+			case 'Ingredients':
+				return 'Catalog by Ingredients'
+			case 'Categories':
 			default:
-				return 'Полный каталог рецептов'
+				return 'Full Recipe Catalog'
 		}
 	}
 
@@ -39,7 +39,7 @@ const Recipes = () => {
 							{getHeadingText()}
 						</h1>
 
-						<Filter Options={['Категории', 'Страны', 'Ингридиент']} className="mt-6" />
+						<Filter Options={['Categories', 'Countries', 'Ingredients']} className="mt-6" />
 					</div>
 
 					<DynamicDishGrid filterType={option} />
