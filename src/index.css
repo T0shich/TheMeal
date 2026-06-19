@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 :root {
-	--app-font-body: 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
-	--app-font-display: 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+	--app-font-body: 'Outfit', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+	--app-font-display: 'Outfit', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
 	--app-bg: #f4f1ea;
 	--app-surface: #ffffff;
 	--app-surface-soft: #faf8f4;
