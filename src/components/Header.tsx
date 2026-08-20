@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaRegUser, FaSearch, FaBars, FaTimes } from "react-icons/fa"
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa"
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import HeaderLi from "../ui/HeaderLi"
